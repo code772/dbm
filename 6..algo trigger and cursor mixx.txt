@@ -1,0 +1,158 @@
+Algorithm: Employee Management System using Triggers and Cursor
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create database EmployeeDB.
+
+Step 3: Select Database
+
+Use EmployeeDB.
+🔹 Table Creation Phase
+
+Step 4: Create Employees Table
+
+Attributes:
+emp_id → AUTO_INCREMENT Primary Key
+emp_name, department, salary
+
+Step 5: Create Employee_Audit Table
+
+Attributes:
+audit_id → AUTO_INCREMENT Primary Key
+emp_id, action_type, old_salary, new_salary, action_time
+🔹 Trigger Creation Phase (Audit Logging)
+
+Step 6: Set Delimiter
+
+Change delimiter to //
+
+Step 7: Create INSERT Trigger
+
+Event: AFTER INSERT
+Action:
+Log new employee salary into audit table using NEW
+
+Step 8: Create UPDATE Trigger
+
+Event: AFTER UPDATE
+Action:
+Log old and new salary using OLD and NEW
+
+Step 9: Create DELETE Trigger
+
+Event: AFTER DELETE
+Action:
+Log deleted employee salary using OLD
+
+Step 10: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Data Insertion Phase
+
+Step 11: Insert Records
+
+Add employees into Employees table
+🔹 Cursor and Procedure Phase
+
+Step 12: Set Delimiter
+
+Change delimiter to //
+
+Step 13: Create Procedure Update_IT_Salary
+
+Declare variables:
+done → loop control flag
+v_emp_id, v_salary → store fetched data
+Declare cursor:
+Select employees where department = 'IT'
+Declare handler:
+When no more rows → set done = 1
+Open cursor
+
+Step 14: Loop Execution
+
+Fetch each record
+If no data → exit loop
+Otherwise:
+Increase salary by 10%
+Update employee record
+
+Step 15: Close Cursor
+
+Release resources
+
+Step 16: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Execution Phase
+
+Step 17: Call Procedure
+
+CALL Update_IT_Salary();
+🔹 Result Display
+
+Step 18: Display Updated Employees
+
+SELECT * FROM Employees;
+
+Step 19: Display Audit Log
+
+SELECT * FROM Employee_Audit;
+
+Step 20: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. Trigger Concept
+Automatic execution on INSERT, UPDATE, DELETE
+Used for audit logging
+🔹 2. Cursor Concept
+Cursor is a row-by-row processing mechanism
+Used when set-based query is not sufficient
+🔹 3. Types of Cursor
+Implicit (automatic)
+Explicit (user-defined) ✔ used here
+🔹 4. Cursor Components
+DECLARE cursor
+OPEN cursor
+FETCH data
+CLOSE cursor
+🔹 5. Handler
+Used to handle end of data
+NOT FOUND condition → stops loop
+🔹 6. Loop Control
+done variable ensures controlled termination
+🔹 7. Working Logic
+Cursor selects IT employees
+Loop fetches one row at a time
+Salary increased by 10%
+UPDATE trigger logs change automatically
+🔹 8. OLD and NEW Keywords
+OLD → before update
+NEW → after update
+🔹 9. Integration Concept (Very Important)
+Procedure performs update
+Trigger automatically logs changes
+👉 Combined automation system
+🔹 10. Advantages
+Handles row-wise operations
+Enables complex logic
+Automatic audit logging
+🔹 11. Disadvantages
+Slower than set-based queries
+Higher complexity
+Harder debugging
+🔹 12. Performance Insight
+Cursor → O(n) row processing
+Better alternative sometimes:
+UPDATE Employees
+SET salary = salary * 1.10
+WHERE department = 'IT';
+
+👉 But cursor used for learning purpose
+
+🔹 13. Real-Life Applications
+Payroll systems
+Banking transactions
+Batch processing systems
