@@ -1,0 +1,95 @@
+Algorithm: Database Creation and Relationship Implementation
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create a new database named StudentDB.
+
+Step 3: Select Database
+
+Use the created database for further operations.
+
+Step 4: Create Student Table
+
+Define attributes: StudentID (Primary Key), Name, Email, Age, Address.
+
+Step 5: Insert Records into Student
+
+Add sample student data.
+
+Step 6: Create Instructor Table
+
+Define attributes: InstructorID (Primary Key), Name, Email, Department.
+
+Step 7: Insert Records into Instructor
+
+Add instructor details.
+
+Step 8: Create Course Table
+
+Define attributes: CourseID (Primary Key), CourseName, Credits, InstructorID.
+Establish Foreign Key:
+InstructorID references Instructor(InstructorID).
+
+Step 9: Insert Records into Course
+
+Add course details mapped with instructors.
+
+Step 10: Create Enrollment Table
+
+Define attributes: EnrollmentID (Primary Key), StudentID, CourseID, EnrollmentDate.
+Establish Foreign Keys:
+StudentID references Student(StudentID)
+CourseID references Course(CourseID)
+
+Step 11: Insert Records into Enrollment
+
+Add enrollment data linking students and courses.
+
+Step 12: Retrieve Data
+
+Display all records using SELECT * from all tables.
+
+Step 13: Stop
+
+✅ Important Points (Write in Theory Section)
+1. Database Design Concept
+The system follows a Relational Database Model.
+Data is organized into multiple related tables to avoid redundancy.
+2. Entity Explanation
+Student → Stores student details.
+Instructor → Stores faculty details.
+Course → Stores course information.
+Enrollment → Acts as a junction table.
+3. Relationship Explanation
+Student ↔ Course → Many-to-Many
+Implemented using Enrollment table.
+Instructor → Course → One-to-Many
+One instructor teaches multiple courses.
+4. Keys Used
+Primary Key
+Uniquely identifies each record.
+Example: StudentID, InstructorID, CourseID, EnrollmentID.
+Foreign Key
+Maintains relationship between tables.
+Ensures referential integrity.
+5. Referential Integrity
+Prevents invalid data entry.
+Example:
+Cannot insert a Course with non-existing InstructorID.
+Cannot enroll a student who doesn’t exist.
+6. Normalization
+Database is in 3rd Normal Form (3NF):
+No redundancy
+No partial dependency
+No transitive dependency
+7. Data Types Used
+INT → Numeric identifiers
+VARCHAR → Text fields
+DATE → Enrollment tracking
+8. Advantages of This Design
+Reduces duplication
+Improves data consistency
+Easy to query using JOINs
+Scalable for real systems

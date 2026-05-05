@@ -1,0 +1,131 @@
+Algorithm: Cursor-Based Salary Update for IT Department
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create EmployeeDB.
+
+Step 3: Select Database
+
+Use EmployeeDB.
+🔹 Table Creation
+
+Step 4: Create Employees Table
+
+Attributes:
+emp_id → AUTO_INCREMENT Primary Key
+emp_name, department, salary
+🔹 Data Insertion
+
+Step 5: Insert Records
+
+Add employees with different departments
+🔹 Procedure and Cursor Creation
+
+Step 6: Set Delimiter
+
+Change delimiter to //
+
+Step 7: Create Procedure Update_IT_Salary
+
+Declare variables:
+done → loop control flag
+v_emp_id, v_salary → store fetched values
+Declare cursor:
+SELECT emp_id, salary FROM Employees WHERE department = 'IT';
+Declare handler:
+CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+🔹 Cursor Execution
+
+Step 8: Open Cursor
+
+Start processing result set
+
+Step 9: Loop Through Records
+
+Fetch one row at a time
+If no more rows → exit loop
+Otherwise:
+Increase salary by 10%
+Update employee record
+
+Step 10: Close Cursor
+
+Release resources
+
+Step 11: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Execution Phase
+
+Step 12: Call Procedure
+
+CALL Update_IT_Salary();
+🔹 Result Display
+
+Step 13: Display Updated Table
+
+SELECT * FROM Employees;
+
+Step 14: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. Cursor Definition
+A cursor is used to process rows one by one
+Required when row-wise logic is needed
+🔹 2. Why Cursor is Used Here
+To update salary individually for IT employees
+Demonstrates procedural control in SQL
+🔹 3. Cursor Components
+DECLARE
+OPEN
+FETCH
+CLOSE
+🔹 4. Handler Role
+Handles end of result set
+Prevents infinite loop
+🔹 5. Loop Mechanism
+LOOP + LEAVE used for controlled iteration
+🔹 6. Working Logic
+Select IT employees
+Fetch one employee at a time
+Increase salary by 10%
+Update table
+🔹 7. Mathematical Logic
+New Salary = Old Salary × 1.10
+🔹 8. Advantages
+Fine-grained control
+Useful for complex row-based operations
+🔹 9. Disadvantages
+Slower than set-based queries
+Higher execution time for large data
+🔹 10. Performance Insight (Very Important)
+
+Better alternative:
+
+UPDATE Employees
+SET salary = salary * 1.10
+WHERE department = 'IT';
+
+👉 Faster (set-based execution)
+
+🔹 11. Execution Flow
+Procedure called
+Cursor opens
+Loop processes each row
+Table updated
+🔹 12. Real-Life Applications
+Payroll processing
+Batch updates
+Data migration
+🔹 13. Common Mistakes
+Missing handler
+Not closing cursor
+Infinite loop
+Wrong variable mapping
+🔹 14. Exam-Level Insight
+Cursor = procedural SQL (row-by-row)
+Normal SQL = set-based (bulk operation)
+🔹 15. Optional Improvement
+salary DECIMAL(10,2) CHECK (salary > 0)

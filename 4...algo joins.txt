@@ -1,0 +1,133 @@
+Algorithm: Multi-Table Joins in Customer Order Management System
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create database Customer_Order_DB.
+
+Step 3: Select Database
+
+Use the created database.
+🔹 Table Creation Phase
+
+Step 4: Create customer Table
+
+Define attributes:
+customer_id as Primary Key
+customer_name, phone_no, email_id, address
+
+Step 5: Create orders Table
+
+Define attributes:
+order_id as Primary Key
+customer_id, product, quantity, price
+Add Foreign Key:
+customer_id references customer(customer_id)
+🔹 Data Insertion Phase
+
+Step 6: Insert Records into customer
+
+Add customer details
+
+Step 7: Insert Records into orders
+
+Add order details
+🔹 Data Retrieval Phase
+
+Step 8: Display Tables
+
+Retrieve all records from both tables
+🔹 Join Operations
+
+Step 9: INNER JOIN
+
+Retrieve only matching records from both tables
+SELECT c.customer_id, c.customer_name, o.product, o.quantity, o.price
+FROM customer c
+INNER JOIN orders o ON c.customer_id = o.customer_id;
+
+Step 10: LEFT JOIN
+
+Retrieve all customers, including those without orders
+SELECT c.customer_id, c.customer_name, o.product, o.quantity, o.price
+FROM customer c
+LEFT JOIN orders o ON c.customer_id = o.customer_id;
+
+Step 11: RIGHT JOIN
+
+Retrieve all orders, including those without matching customers
+SELECT o.customer_id, c.customer_name, o.product, o.quantity, o.price
+FROM customer c
+RIGHT JOIN orders o ON c.customer_id = o.customer_id;
+
+Step 12: FULL OUTER JOIN (Using UNION)
+
+Combine LEFT and RIGHT JOIN results
+SELECT c.customer_id, c.customer_name, o.product, o.quantity, o.price
+FROM customer c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+UNION
+SELECT o.customer_id, c.customer_name, o.product, o.quantity, o.price
+FROM customer c
+RIGHT JOIN orders o ON c.customer_id = o.customer_id;
+
+Step 13: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. Join Definition
+Joins are used to combine data from multiple tables based on a related column
+🔹 2. Types of Joins Used
+✔ INNER JOIN
+Returns only matching records
+Ignores unmatched rows
+✔ LEFT JOIN
+Returns all records from left table (customer)
+Unmatched values → NULL
+✔ RIGHT JOIN
+Returns all records from right table (orders)
+Unmatched values → NULL
+✔ FULL OUTER JOIN
+Returns all records from both tables
+MySQL does not support directly
+Implemented using UNION of LEFT + RIGHT JOIN
+🔹 3. Foreign Key Role
+Maintains relationship between tables
+Ensures valid customer_id in orders
+🔹 4. Referential Integrity
+Prevents invalid data insertion
+Cannot insert order with non-existing customer
+🔹 5. Aliases
+c, o used for shorter query writing
+Improves readability
+🔹 6. NULL Handling in Joins
+Occurs when no matching record exists
+Seen in LEFT/RIGHT JOIN
+🔹 7. UNION vs UNION ALL
+UNION removes duplicates
+UNION ALL keeps duplicates (faster)
+🔹 8. Execution Order
+FROM
+JOIN
+ON
+SELECT
+🔹 9. Performance Consideration
+Joins on indexed columns are faster
+Foreign key columns are often indexed
+🔹 10. Real-Life Applications
+E-commerce (customers + orders)
+Banking systems
+CRM systems
+🔹 11. Common Mistakes
+Missing join condition → Cartesian product
+Wrong join type selection
+Confusing LEFT vs RIGHT
+🔹 12. Exam-Level Insight
+INNER JOIN → intersection
+LEFT/RIGHT JOIN → partial inclusion
+FULL JOIN → complete inclusion
+🔹 13. Optional Improvement (High Scoring)
+Add:
+ORDER BY c.customer_id;
+
+for structured output

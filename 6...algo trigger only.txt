@@ -1,0 +1,137 @@
+Algorithm: Employee Management System with Triggers (Audit Logging)
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create database EmployeeDB.
+
+Step 3: Select Database
+
+Use EmployeeDB.
+🔹 Table Creation Phase
+
+Step 4: Create Employees Table
+
+Attributes:
+emp_id → AUTO_INCREMENT Primary Key
+emp_name, department, salary
+
+Step 5: Create Employee_Audit Table
+
+Attributes:
+audit_id → AUTO_INCREMENT Primary Key
+emp_id, action_type, old_salary, new_salary, action_time
+🔹 Trigger Creation Phase
+
+Step 6: Set Delimiter
+
+Change delimiter to //
+🔹 INSERT Trigger
+
+Step 7: Create Trigger trg_emp_insert
+
+Event: AFTER INSERT on Employees
+Action:
+Insert into Employee_Audit
+Store:
+emp_id
+action = 'INSERT'
+new_salary
+🔹 UPDATE Trigger
+
+Step 8: Create Trigger trg_emp_update
+
+Event: AFTER UPDATE
+Action:
+Insert audit record
+Store:
+old_salary (OLD.salary)
+new_salary (NEW.salary)
+🔹 DELETE Trigger
+
+Step 9: Create Trigger trg_emp_delete
+
+Event: AFTER DELETE
+Action:
+Insert audit record
+Store:
+old_salary
+
+Step 10: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Execution Phase
+
+Step 11: Insert Records
+
+Add employees into Employees
+
+Step 12: Update Record
+
+Modify salary → fires UPDATE trigger
+
+Step 13: Delete Record
+
+Delete employee → fires DELETE trigger
+🔹 Result Display
+
+Step 14: Display Employees Table
+
+SELECT * FROM Employees;
+
+Step 15: Display Audit Table
+
+SELECT * FROM Employee_Audit;
+
+Step 16: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. Trigger Definition
+A trigger is an automatic SQL procedure executed when an event occurs on a table
+🔹 2. Types of Triggers Used
+AFTER INSERT
+AFTER UPDATE
+AFTER DELETE
+🔹 3. OLD and NEW Keywords
+NEW → values after operation
+OLD → values before operation
+
+✔ Used in UPDATE and DELETE tracking
+
+🔹 4. Audit Logging Concept
+Tracks all changes in database
+Maintains history of operations
+Useful for debugging and security
+🔹 5. Trigger Execution
+Automatically executed
+No need to call manually
+🔹 6. AFTER vs BEFORE Trigger
+AFTER → executes after operation
+BEFORE → executes before operation
+
+✔ You used AFTER → correct for logging
+
+🔹 7. Advantages of Triggers
+Automatic logging
+Enforces business rules
+Improves data integrity
+🔹 8. Disadvantages
+Hard to debug
+Hidden execution (not visible in queries)
+Can slow down operations
+🔹 9. Transaction Flow
+User performs INSERT/UPDATE/DELETE
+Trigger fires automatically
+Audit table updated
+🔹 10. Real-Life Applications
+Banking transactions
+Employee salary tracking
+Security monitoring
+🔹 11. Best Practices
+Keep triggers simple
+Avoid multiple triggers on same event
+Use meaningful names
+🔹 12. Data Integrity
+Ensures all modifications are recorded
+Prevents data loss tracking issues

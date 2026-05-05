@@ -1,0 +1,125 @@
+Algorithm: Stored Procedure and Function in Sales Management System
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create database SalesDB.
+
+Step 3: Select Database
+
+Use SalesDB.
+🔹 Table Creation Phase
+
+Step 4: Create Sales Table
+
+Define attributes:
+sale_id as AUTO_INCREMENT Primary Key
+product_name, quantity, price, total
+🔹 Stored Procedure Creation
+
+Step 5: Define Delimiter
+
+Change delimiter to // to allow procedure definition.
+
+Step 6: Create Procedure AddSale
+
+Input parameters:
+p_name, p_qty, p_price
+Declare variable:
+total_amount
+Compute total:
+total_amount = p_qty * p_price
+Insert record into Sales table
+
+Step 7: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Procedure Execution
+
+Step 8: Call Procedure
+
+Insert records using:
+CALL AddSale('Laptop', 2, 50000.00);
+CALL AddSale('Mouse', 5, 500.00);
+🔹 Function Creation
+
+Step 9: Define Delimiter
+
+Change delimiter to //
+
+Step 10: Create Function GetTotalSales
+
+Return type: DECIMAL
+Declare variable:
+total_sales
+Calculate sum:
+SELECT SUM(total) INTO total_sales FROM Sales
+Handle NULL using:
+IFNULL(total_sales, 0.00)
+Return total sales value
+
+Step 11: Reset Delimiter
+
+Set delimiter back to ;
+🔹 Result Display
+
+Step 12: Display Sales Data
+
+SELECT * FROM Sales;
+
+Step 13: Display Total Sales
+
+SELECT GetTotalSales() AS Total_Sales;
+
+Step 14: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. Stored Procedure
+A precompiled SQL block stored in database
+Can accept input parameters
+Improves performance and reusability
+🔹 2. Function
+Returns a single value
+Can be used inside SELECT queries
+🔹 3. Difference: Procedure vs Function
+Feature	Procedure	Function
+Return value	Optional	Mandatory
+Usage	CALL statement	Inside SELECT
+Purpose	Perform operation	Return value
+🔹 4. AUTO_INCREMENT
+Automatically generates unique IDs
+Eliminates manual entry
+🔹 5. DELIMITER Concept
+Used to define multi-line SQL blocks
+Prevents premature termination of procedure/function
+🔹 6. Local Variables
+Declared using DECLARE
+Used inside procedure/function
+🔹 7. Computation Logic
+Total = Quantity × Price
+Done inside procedure → reduces redundancy
+🔹 8. IFNULL Function
+Handles NULL values
+Prevents errors when no records exist
+🔹 9. Advantages
+Code reusability
+Better performance
+Centralized logic
+Reduced client-side processing
+🔹 10. Disadvantages
+Harder to debug
+Database dependent
+🔹 11. Execution Flow
+Procedure inserts data
+Function calculates total
+SELECT displays result
+🔹 12. Real-Life Applications
+Billing systems
+Inventory management
+Sales dashboards
+🔹 13. Exam-Level Improvements
+Add constraint:
+quantity INT NOT NULL
+Use:
+CHECK (quantity > 0)

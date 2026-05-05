@@ -1,0 +1,161 @@
+Algorithm: Views and Indexing for Optimization
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create database StudentDB.
+
+Step 3: Select Database
+
+Use StudentDB for all operations.
+🔹 Table Creation Phase
+
+Step 4: Create Student Table
+
+Define attributes with StudentID as Primary Key.
+
+Step 5: Create Instructor Table
+
+Define attributes with InstructorID as Primary Key.
+
+Step 6: Create Course Table
+
+Define attributes with CourseID as Primary Key.
+Add Foreign Key InstructorID referencing Instructor.
+
+Step 7: Create Enrollment Table
+
+Define attributes with EnrollmentID as Primary Key.
+Add Foreign Keys:
+StudentID → Student
+CourseID → Course
+🔹 Data Insertion Phase
+
+Step 8: Insert Records
+
+Insert data into all tables in proper order:
+Student → Instructor → Course → Enrollment
+🔹 View Creation Phase
+
+Step 9: Create Complex View (StudentCourseView)
+
+Join Student, Enrollment, and Course
+Display:
+Student Name
+Course Name
+Enrollment Date
+
+Step 10: Retrieve Data from View
+
+Execute SELECT query on view
+🔹 Updatable View Phase
+
+Step 11: Create Simple View (v1)
+
+Based on single table (Student)
+Select limited columns
+
+Step 12: Retrieve Data from View
+
+Display records from v1
+
+Step 13: Update Data Using View
+
+Modify student age using UPDATE v1
+
+Step 14: Verify Changes
+
+Display updated data
+
+Step 15: Drop View
+
+Remove v1
+🔹 Indexing Phase
+
+Step 16: Create Index on Student
+
+Create index on Name column
+
+Step 17: Display Index
+
+Use SHOW INDEX
+
+Step 18: Create Index on Course
+
+Create index on CourseID
+
+Step 19: Drop Index
+
+Remove index from Course
+
+Step 20: Rename Index
+
+Rename index on Student
+
+Step 21: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. View Definition
+A virtual table derived from SQL query
+Does not store actual data
+🔹 2. Types of Views
+Simple View → Single table, supports UPDATE
+Complex View → Multiple tables, mainly for reporting
+🔹 3. Advantages of Views
+Simplifies complex queries
+Enhances security
+Provides abstraction
+Improves readability
+🔹 4. View Limitations
+Cannot always update complex views
+Depends on base tables
+May reduce performance for large queries
+🔹 5. Updatable View Conditions
+Based on single table
+No JOIN or GROUP BY
+Contains primary key
+🔹 6. WITH CHECK OPTION
+Ensures valid updates through view
+Prevents violating view conditions
+🔹 7. Index Definition
+A structure that improves data retrieval speed
+🔹 8. Index Internals
+Uses B-Tree structure
+Reduces search time:
+Without index → O(n)
+With index → O(log n)
+🔹 9. When Index is Used
+In WHERE, JOIN, ORDER BY clauses
+🔹 10. When Index is NOT Used
+Small tables
+Using functions on column
+Pattern starting with %
+🔹 11. Primary Key and Index
+Primary Key automatically creates index
+No need to manually index it again
+🔹 12. Composite Index
+Index on multiple columns for faster queries
+🔹 13. Performance Measurement
+Use EXPLAIN to check query execution
+🔹 14. Advantages of Index
+Faster search
+Better query performance
+🔹 15. Disadvantages of Index
+Extra memory required
+Slows INSERT/UPDATE
+🔹 16. Security Using Views
+Restrict access to sensitive columns
+🔹 17. DDL and DML
+DDL → CREATE, DROP, ALTER
+DML → INSERT, UPDATE, SELECT
+🔹 18. Real-Life Applications
+Student systems
+Banking
+E-commerce
+🔹 19. Best Practices
+Index only frequently used columns
+Avoid over-indexing
+🔹 20. Exam-Level Observation
+Views = Logical abstraction
+Index = Physical optimization

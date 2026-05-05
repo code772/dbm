@@ -1,0 +1,110 @@
+CRUD Operations in MongoDB (NoSQL Database)
+
+Step 1: Start
+
+Step 2: Select/Create Database
+
+Use database studentdb
+use studentdb
+🔹 Collection Creation
+
+Step 3: Create Collection
+
+Create a collection named users
+db.createCollection("users")
+🔹 Insert Operations (CREATE)
+
+Step 4: Insert Single Document
+
+Add one user record
+db.users.insertOne({
+  name: "Kiran",
+  age: 28,
+  department: "Engineering",
+  sales: 500
+});
+
+Step 5: Insert Multiple Documents
+
+Add multiple user records
+db.users.insertMany([
+  { name: "Amit", age: 34, department: "Sales", sales: 1200},
+  { name: "Neha", age: 22, department: "Engineering", sales: 300},
+  { name: "Uday", age: 40, department: "Sales", sales: 2500}
+]);
+🔹 Read Operations (READ)
+
+Step 6: Retrieve Multiple Records
+
+Find users in Sales department
+db.users.find({ department: "Sales" });
+
+Step 7: Retrieve Single Record
+
+Find one user by name
+db.users.findOne({ name: "Kiran" });
+🔹 Update Operation (UPDATE)
+
+Step 8: Update Document
+
+Modify sales of Kiran
+db.users.updateOne(
+  { name: "Kiran" }, 
+  { $set: { sales: 1500 } }
+);
+🔹 Delete Operation (DELETE)
+
+Step 9: Delete Document
+
+Remove user Amit
+db.users.deleteOne({ name: "Amit" });
+
+Step 10: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. NoSQL Database
+Non-relational database
+Stores data in JSON-like documents (BSON)
+🔹 2. MongoDB Basics
+Database → Collection → Document
+Equivalent to:
+DB → Tables → Rows (in SQL)
+🔹 3. CRUD Operations
+Create → insertOne(), insertMany()
+Read → find(), findOne()
+Update → updateOne()
+Delete → deleteOne()
+🔹 4. Schema Flexibility
+No fixed schema required
+Different documents can have different fields
+🔹 5. Document Structure
+
+Example:
+
+{
+  name: "Kiran",
+  age: 28,
+  department: "Engineering"
+}
+🔹 6. Querying
+Uses key-value pairs
+Similar to JSON filtering
+🔹 7. Update Operators
+$set → modifies specific field
+Other operators:
+$inc, $unset, $push
+🔹 8. Advantages of MongoDB
+Flexible schema
+High performance
+Scalable
+Suitable for large data
+🔹 9. Disadvantages
+No strong ACID support (compared to SQL, though improved)
+Data redundancy possible
+🔹 10. Use Cases
+Big data applications
+Real-time analytics
+Content management systems
+🔹 11. Indexing in MongoDB
+Improves query performance
+db.users.createIndex({ name: 1 });

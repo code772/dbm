@@ -1,0 +1,145 @@
+Algorithm: SQL Queries with Filters, Sorting, Aggregation, Subqueries
+
+Step 1: Start
+
+Step 2: Create Database
+
+Create StudentDB.
+
+Step 3: Select Database
+
+Use StudentDB.
+🔹 Table Creation
+
+Step 4: Create Student Table
+
+Define attributes with StudentID as Primary Key.
+
+Step 5: Create Instructor Table
+
+Define attributes with InstructorID as Primary Key.
+
+Step 6: Create Course Table
+
+Define attributes and add Foreign Key InstructorID.
+
+Step 7: Create Enrollment Table
+
+Add Foreign Keys:
+StudentID → Student
+CourseID → Course
+🔹 Data Insertion
+
+Step 8: Insert Records
+
+Insert data into all tables in correct order.
+🔹 Filtering Data (WHERE Clause)
+
+Step 9: Apply Filter
+
+Retrieve students with age greater than 20:
+SELECT * FROM Student WHERE Age > 20;
+🔹 Sorting Data (ORDER BY)
+
+Step 10: Sort Descending
+
+Display courses by credits in descending order:
+SELECT * FROM Course ORDER BY Credits DESC;
+
+Step 11: Sort Ascending
+
+Display courses by credits in ascending order:
+SELECT * FROM Course ORDER BY Credits ASC;
+🔹 Aggregation (GROUP BY)
+
+Step 12: Count Students per Course
+
+SELECT CourseID, COUNT(StudentID)
+FROM Enrollment
+GROUP BY CourseID;
+
+Step 13: Calculate Average Age
+
+SELECT StudentID, AVG(Age)
+FROM Student
+GROUP BY StudentID;
+🔹 Nested Subquery
+
+Step 14: Subquery Execution
+
+Retrieve names of students enrolled in CourseID = 1:
+SELECT Name FROM Student
+WHERE StudentID IN (
+    SELECT StudentID FROM Enrollment WHERE CourseID = 1
+);
+
+Step 15: Stop
+
+✅ Important Points (Theory Section)
+🔹 1. WHERE Clause (Filtering)
+Used to extract specific records based on condition
+Example: Age > 20
+🔹 2. ORDER BY Clause (Sorting)
+Used to arrange data:
+ASC → Ascending (default)
+DESC → Descending
+🔹 3. GROUP BY Clause
+Groups rows having same values
+Used with aggregate functions
+🔹 4. Aggregate Functions
+COUNT() → counts rows
+AVG() → calculates average
+Others: SUM(), MAX(), MIN()
+🔹 5. Observation (Important Correction)
+SELECT StudentID, AVG(Age) FROM Student GROUP BY StudentID;
+Since StudentID is unique → each group has 1 row
+👉 So AVG(Age) = same as Age
+
+✔ Better conceptual query:
+
+SELECT AVG(Age) FROM Student;
+🔹 6. Nested Subquery
+Query inside another query
+Executes inner query first
+🔹 7. Types of Subqueries
+Single-row
+Multi-row (IN, ANY, ALL)
+
+✔ Your example uses IN (multi-row subquery)
+
+🔹 8. Advantages of Subquery
+Simplifies complex queries
+Improves readability
+Avoids multiple joins (in some cases)
+🔹 9. Performance Consideration
+Subqueries can be slower than JOINs for large data
+Indexing improves performance
+🔹 10. Execution Order of SQL Query
+FROM
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+🔹 11. HAVING vs WHERE
+WHERE → filters before grouping
+HAVING → filters after grouping
+
+Example:
+
+SELECT CourseID, COUNT(*)
+FROM Enrollment
+GROUP BY CourseID
+HAVING COUNT(*) > 1;
+🔹 12. NULL Handling
+Aggregate functions ignore NULL values
+🔹 13. Index Usage
+Improves performance of:
+WHERE
+ORDER BY
+GROUP BY
+🔹 14. Real-Life Application
+Student filtering
+Ranking courses
+Analyzing enrollments
+Reporting systems
